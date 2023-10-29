@@ -1,4 +1,4 @@
-package dev.passerby.tourtestproject.ui.theme
+package dev.passerby.tourtestproject.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 

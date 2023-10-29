@@ -19,8 +19,8 @@ class MainRepositoryImpl : MainRepository {
     private val apiService = ApiFactory.apiService
     private val mainInfoMapper = MainInfoMapper()
     private val blogContentMapper = BlogContentMapper()
-    private val mainInfoResult = MutableLiveData<BaseResponse<MainDto>>()
-    private val blogContentResult = MutableLiveData<BaseResponse<BlogDto>>()
+    val mainInfoResult = MutableLiveData<BaseResponse<MainDto>>()
+    val blogContentResult = MutableLiveData<BaseResponse<BlogDto>>()
 
     override suspend fun loadMainInfo(): LiveData<MainModel> {
         val mainModel = MutableLiveData<MainDto>()
@@ -50,13 +50,13 @@ class MainRepositoryImpl : MainRepository {
             if (response.code() == 200) {
                 blogContentResult.postValue(BaseResponse.Success(response.body()))
                 blogModel.postValue(response.body())
-                Log.d(TAG, "loadMainInfoTry: ${response.isSuccessful}")
+                Log.d(TAG, "loadBlogContentTry: ${response.isSuccessful}")
             } else {
                 blogContentResult.postValue(BaseResponse.Error(response.message()))
-                Log.d(TAG, "loadMainInfoElse: ${response.message()}")
+                Log.d(TAG, "loadBlogContentElse: ${response.message()}")
             }
         } catch (ex: Exception) {
-            Log.d(TAG, "loadMainInfoCatch: $ex")
+            Log.d(TAG, "loadBlogContentCatch: $ex")
             blogContentResult.postValue(BaseResponse.Error(ex.message))
         }
         return (blogModel.map { blogContentMapper.mapDtoToEntity(it) })

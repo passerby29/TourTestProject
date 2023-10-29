@@ -86,4 +86,7 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:4.11.0")
     //picasso
     implementation("com.squareup.picasso:picasso:2.71828")
+    //navigation
+    implementation("androidx.navigation:navigation-runtime-ktx:2.7.4")
+    implementation("androidx.navigation:navigation-compose:2.7.4")
 }
