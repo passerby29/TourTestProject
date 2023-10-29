@@ -1,10 +1,10 @@
 package dev.passerby.tourtestproject.domain.models
 
 data class MainModel(
-    val main: List<Main>,
+    val mainInfo: MainInfo,
 )
 
-data class Main(
+data class MainInfo(
     val buttons: List<Button>,
     val content: List<Content>
 )
