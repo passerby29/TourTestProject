@@ -9,14 +9,6 @@ import dev.passerby.tourtestproject.domain.models.BaseImageModel
 import dev.passerby.tourtestproject.domain.models.BlogModel
 
 class BlogContentMapper {
-    fun mapDtoToEntity(dto: BlogDto): BlogModel {
-        val entityList = mutableListOf<dev.passerby.tourtestproject.domain.models.BlogItem>()
-        dto.blogList.map {
-            entityList.add(mapDtoContentToEntityContent(it))
-        }
-        return BlogModel(entityList)
-    }
-
     fun mapDtoContentToEntityContent(dtoBlog: BlogItem) =
         dev.passerby.tourtestproject.domain.models.BlogItem(
             date = mapDtoDateToEntityDate(dtoBlog.date),

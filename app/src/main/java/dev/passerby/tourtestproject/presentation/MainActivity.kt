@@ -15,14 +15,18 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.compose.rememberNavController
 import dev.passerby.tourtestproject.presentation.navbar.MyBottomNavigation
-import dev.passerby.tourtestproject.presentation.navbar.NavigationGraph
 import dev.passerby.tourtestproject.presentation.theme.TourTestProjectTheme
+import dev.passerby.tourtestproject.presentation.viewmodels.BlogDetailViewModel
 import dev.passerby.tourtestproject.presentation.viewmodels.HomeViewModel
 
 class MainActivity : ComponentActivity() {
 
     private val homeViewModel by lazy {
         ViewModelProvider(this)[HomeViewModel::class.java]
+    }
+
+    private val blogDetailViewModel by lazy {
+        ViewModelProvider(this)[BlogDetailViewModel::class.java]
     }
 
     @OptIn(ExperimentalMaterial3Api::class)
@@ -40,7 +44,7 @@ class MainActivity : ComponentActivity() {
                         bottomBar = { MyBottomNavigation(navController = navController) }
                     ) {
                         it.calculateBottomPadding()
-                        NavigationGraph(navController = navController, homeViewModel)
+                        NavigationGraph(navController = navController, homeViewModel, blogDetailViewModel)
                     }
                 }
             }

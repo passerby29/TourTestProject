@@ -14,6 +14,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -21,8 +22,10 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import dev.passerby.tourtestproject.R
 import dev.passerby.tourtestproject.domain.models.BlogItem
+import dev.passerby.tourtestproject.presentation.viewmodels.BlogDetailViewModel
 
 @Composable
 fun HomeScreen(blogContent: List<BlogItem>, itemClick: (blogId: Int) -> Unit) {
@@ -44,8 +47,9 @@ fun HomeScreen(blogContent: List<BlogItem>, itemClick: (blogId: Int) -> Unit) {
 }
 
 @Composable
-fun BlogDetailScreen() {
-    val title = "Blog Detail Screen"
+fun BlogDetailScreen(blogId: Int, blogDetailViewModel: BlogDetailViewModel) {
+    blogDetailViewModel.loadBlogDetail(blogId)
+    val blogDetail = blogDetailViewModel.blogDetail.observeAsState().value
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -53,7 +57,7 @@ fun BlogDetailScreen() {
             .wrapContentSize(Alignment.Center)
     ) {
         Text(
-            text = title,
+            text = blogDetail?.blogDetail?.title.toString(),
             fontWeight = FontWeight.Bold,
             color = Color.White,
             modifier = Modifier.align(Alignment.CenterHorizontally),

@@ -5,11 +5,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.map
 import dev.passerby.tourtestproject.data.mappers.BlogContentMapper
+import dev.passerby.tourtestproject.data.mappers.BlogDetailMapper
 import dev.passerby.tourtestproject.data.mappers.MainInfoMapper
+import dev.passerby.tourtestproject.data.models.BlogDetailDto
 import dev.passerby.tourtestproject.data.models.BlogDto
 import dev.passerby.tourtestproject.data.models.MainDto
 import dev.passerby.tourtestproject.data.network.ApiFactory
 import dev.passerby.tourtestproject.data.network.BaseResponse
+import dev.passerby.tourtestproject.domain.models.BlogDetailModel
 import dev.passerby.tourtestproject.domain.models.BlogItem
 import dev.passerby.tourtestproject.domain.models.BlogModel
 import dev.passerby.tourtestproject.domain.models.MainModel
@@ -20,8 +23,10 @@ class MainRepositoryImpl : MainRepository {
     private val apiService = ApiFactory.apiService
     private val mainInfoMapper = MainInfoMapper()
     private val blogContentMapper = BlogContentMapper()
+    private val blogDetailMapper = BlogDetailMapper()
     private val mainInfoResult = MutableLiveData<BaseResponse<MainDto>>()
     private val blogContentResult = MutableLiveData<BaseResponse<BlogDto>>()
+    private val blogDetailResult = MutableLiveData<BaseResponse<BlogDetailDto>>()
 
     override suspend fun loadMainInfo(): LiveData<MainModel> {
         val mainModel = MutableLiveData<MainDto>()
@@ -44,7 +49,7 @@ class MainRepositoryImpl : MainRepository {
     }
 
     override suspend fun loadBlogContent(): LiveData<BlogModel> {
-        var blogContent = listOf<BlogItem>()
+        val blogContent: List<BlogItem>
         val blogLiveData = MutableLiveData<BlogModel>()
         blogContentResult.postValue(BaseResponse.Loading())
         try {
@@ -67,6 +72,28 @@ class MainRepositoryImpl : MainRepository {
         }
         blogLiveData.value = BlogModel(emptyList())
         return blogLiveData
+    }
+
+    override suspend fun loadBlogDetail(blogId: Int): LiveData<BlogDetailModel> {
+        val blogContent: BlogDetailDto
+        val blogDetailLiveData = MutableLiveData<BlogDetailModel>()
+        blogDetailResult.postValue(BaseResponse.Loading())
+        try {
+            val response = apiService.loadBlogDetail(blogId = blogId)
+            if (response.code() == 200) {
+                blogDetailResult.postValue(BaseResponse.Success(response.body()))
+                blogContent = response.body()!!
+                blogDetailLiveData.value = blogDetailMapper.mapDtoToEntity(blogContent)
+                Log.d(TAG, "loadBlogDetailTry: ${response.body()?.blogDetail?.date}")
+            } else {
+                blogDetailResult.postValue(BaseResponse.Error(response.message()))
+                Log.d(TAG, "loadBlogDetailElse: ${response.message()}")
+            }
+        } catch (ex: Exception) {
+            Log.d(TAG, "loadBlogDetailCatch: $ex")
+            blogDetailResult.postValue(BaseResponse.Error(ex.message))
+        }
+        return blogDetailLiveData
     }
 
     companion object {

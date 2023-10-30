@@ -1,4 +1,4 @@
-package dev.passerby.tourtestproject.presentation.navbar
+package dev.passerby.tourtestproject.presentation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
@@ -8,18 +8,18 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import dev.passerby.tourtestproject.domain.models.BlogModel
-import dev.passerby.tourtestproject.presentation.BlogDetailScreen
-import dev.passerby.tourtestproject.presentation.BookScreen
-import dev.passerby.tourtestproject.presentation.ChatScreen
-import dev.passerby.tourtestproject.presentation.HomeScreen
-import dev.passerby.tourtestproject.presentation.MapScreen
-import dev.passerby.tourtestproject.presentation.MoreScreen
+import dev.passerby.tourtestproject.presentation.navbar.BottomNavItem
+import dev.passerby.tourtestproject.presentation.viewmodels.BlogDetailViewModel
 import dev.passerby.tourtestproject.presentation.viewmodels.HomeViewModel
 
 @Composable
-fun NavigationGraph(navController: NavHostController, viewModel: HomeViewModel) {
+fun NavigationGraph(
+    navController: NavHostController,
+    homeViewModel: HomeViewModel,
+    blogDetailViewModel: BlogDetailViewModel
+) {
 
-    val blogContent = viewModel.blogContent.observeAsState().value ?: BlogModel(emptyList())
+    val blogContent = homeViewModel.blogContent.observeAsState().value ?: BlogModel(emptyList())
 
     NavHost(navController = navController, startDestination = BottomNavItem.Home.screenRoute) {
         composable(BottomNavItem.Home.screenRoute) {
@@ -43,8 +43,8 @@ fun NavigationGraph(navController: NavHostController, viewModel: HomeViewModel) 
         composable(
             "blogDetail/{blogId}",
             arguments = listOf(navArgument("blogId") { type = NavType.IntType })
-        ) {
-            BlogDetailScreen()
+        ) { backStackEntry ->
+            BlogDetailScreen(backStackEntry.arguments?.getInt("blogId") ?: 0, blogDetailViewModel)
         }
     }
 }
