@@ -1,4 +1,4 @@
-package dev.passerby.tourtestproject.presentation
+package dev.passerby.tourtestproject.presentation.navbar
 
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
@@ -36,7 +36,6 @@ fun MyBottomNavigation(navController: NavController) {
                 label = { Text(text = screen.title, fontSize = 9.sp) },
                 onClick = {
                     navController.navigate(screen.screenRoute) {
-
                         navController.graph.startDestinationRoute?.let { screenRoute ->
                             popUpTo(screenRoute) {
                                 saveState = true

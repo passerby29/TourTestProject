@@ -1,7 +1,13 @@
+@file:OptIn(ExperimentalMaterial3Api::class)
+
 package dev.passerby.tourtestproject.presentation
 
-import androidx.compose.foundation.*
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -13,100 +19,129 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 import dev.passerby.tourtestproject.R
 
-
 @Composable
 fun HomeScreen() {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(colorResource(id = R.color.teal_700))
-            .wrapContentSize(Alignment.Center)
+    val title = "Home Screen"
+    Scaffold(
+        topBar = { MyTopAppBar(title) }
     ) {
-        Text(
-            text = "Home Screen",
-            fontWeight = FontWeight.Bold,
-            color = Color.White,
-            modifier = Modifier.align(Alignment.CenterHorizontally),
-            textAlign = TextAlign.Center,
-            fontSize = 20.sp
-        )
+        it.calculateBottomPadding()
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(colorResource(id = R.color.teal_700))
+                .wrapContentSize(Alignment.Center)
+        ) {
+            Text(
+                text = title,
+                fontWeight = FontWeight.Bold,
+                color = Color.White,
+                modifier = Modifier.align(Alignment.CenterHorizontally),
+                textAlign = TextAlign.Center,
+                fontSize = 20.sp
+            )
+        }
     }
 }
 
 @Composable
 fun MapScreen() {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(colorResource(id = R.color.teal_700))
-            .wrapContentSize(Alignment.Center)
+    val title = "Map Screen"
+    Scaffold(
+        topBar = { MyTopAppBar(title) }
     ) {
-        Text(
-            text = "My Network Screen",
-            fontWeight = FontWeight.Bold,
-            color = Color.White,
-            modifier = Modifier.align(Alignment.CenterHorizontally),
-            textAlign = TextAlign.Center,
-            fontSize = 20.sp
-        )
+        it.calculateBottomPadding()
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(colorResource(id = R.color.teal_700))
+                .wrapContentSize(Alignment.Center)
+        ) {
+            Text(
+                text = title,
+                fontWeight = FontWeight.Bold,
+                color = Color.White,
+                modifier = Modifier.align(Alignment.CenterHorizontally),
+                textAlign = TextAlign.Center,
+                fontSize = 20.sp
+            )
+        }
     }
 }
 
 @Composable
 fun BookScreen() {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(colorResource(id = R.color.teal_700))
-            .wrapContentSize(Alignment.Center)
+    val title = "Book Screen"
+    Scaffold(
+        topBar = { MyTopAppBar(title) }
     ) {
-        Text(
-            text = "Add Post Screen",
-            fontWeight = FontWeight.Bold,
-            color = Color.White,
-            modifier = Modifier.align(Alignment.CenterHorizontally),
-            textAlign = TextAlign.Center,
-            fontSize = 20.sp
-        )
+        it.calculateBottomPadding()
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(colorResource(id = R.color.teal_700))
+                .wrapContentSize(Alignment.Center)
+        ) {
+            Text(
+                text = title,
+                fontWeight = FontWeight.Bold,
+                color = Color.White,
+                modifier = Modifier.align(Alignment.CenterHorizontally),
+                textAlign = TextAlign.Center,
+                fontSize = 20.sp
+            )
+        }
     }
 }
 
 
 @Composable
 fun ChatScreen() {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(colorResource(id = R.color.teal_700))
-            .wrapContentSize(Alignment.Center)
+    val title = "Chat Screen"
+    Scaffold(
+        topBar = { MyTopAppBar(title) }
     ) {
-        Text(
-            text = "Notification Screen",
-            fontWeight = FontWeight.Bold,
-            color = Color.White,
-            modifier = Modifier.align(Alignment.CenterHorizontally),
-            textAlign = TextAlign.Center,
-            fontSize = 20.sp
-        )
+        it.calculateBottomPadding()
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(colorResource(id = R.color.teal_700))
+                .wrapContentSize(Alignment.Center)
+        ) {
+            Text(
+                text = title,
+                fontWeight = FontWeight.Bold,
+                color = Color.White,
+                modifier = Modifier.align(Alignment.CenterHorizontally),
+                textAlign = TextAlign.Center,
+                fontSize = 20.sp
+            )
+        }
     }
 }
 
 
 @Composable
 fun MoreScreen() {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(colorResource(id = R.color.teal_700))
-            .wrapContentSize(Alignment.Center)
+    val title = "More Screen"
+    Scaffold(
+        topBar = { MyTopAppBar(title) }
     ) {
-        Text(
-            text = "Jobs Screen",
-            fontWeight = FontWeight.Bold,
-            color = Color.White,
-            modifier = Modifier.align(Alignment.CenterHorizontally),
-            textAlign = TextAlign.Center,
-            fontSize = 20.sp
-        )
+        it.calculateBottomPadding()
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(colorResource(id = R.color.teal_700))
+                .wrapContentSize(Alignment.Center)
+        ) {
+            Text(
+                text = title,
+                fontWeight = FontWeight.Bold,
+                color = Color.White,
+                modifier = Modifier.align(Alignment.CenterHorizontally),
+                textAlign = TextAlign.Center,
+                fontSize = 20.sp
+            )
+        }
     }
 }

@@ -10,15 +10,14 @@ import androidx.compose.ui.tooling.preview.Preview
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SmallTopAppBarExample() {
-
+fun MyTopAppBar(screenTitle: String) {
     TopAppBar(
         colors = TopAppBarDefaults.smallTopAppBarColors(
             containerColor = MaterialTheme.colorScheme.primaryContainer,
             titleContentColor = MaterialTheme.colorScheme.primary,
         ),
         title = {
-            Text("Small Top App Bar")
+            Text(screenTitle)
         }
     )
 
@@ -27,5 +26,5 @@ fun SmallTopAppBarExample() {
 @Preview
 @Composable
 fun TopBarPreview(){
-    SmallTopAppBarExample()
+    MyTopAppBar("Preview")
 }
