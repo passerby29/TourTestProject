@@ -17,7 +17,7 @@ class BlogContentMapper {
         return BlogModel(entityList)
     }
 
-    private fun mapDtoContentToEntityContent(dtoBlog: BlogItem) =
+    fun mapDtoContentToEntityContent(dtoBlog: BlogItem) =
         dev.passerby.tourtestproject.domain.models.BlogItem(
             date = mapDtoDateToEntityDate(dtoBlog.date),
             id = dtoBlog.id,

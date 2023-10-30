@@ -84,8 +84,8 @@ dependencies {
     implementation("com.google.code.gson:gson:2.10")
     //okhttp
     implementation("com.squareup.okhttp3:logging-interceptor:4.11.0")
-    //picasso
-    implementation("com.squareup.picasso:picasso:2.71828")
+    //coil
+    implementation("io.coil-kt:coil-compose:2.4.0")
     //navigation
     implementation("androidx.navigation:navigation-runtime-ktx:2.7.4")
     implementation("androidx.navigation:navigation-compose:2.7.4")

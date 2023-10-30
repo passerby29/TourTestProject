@@ -10,12 +10,10 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.compose.rememberNavController
-import dev.passerby.tourtestproject.presentation.navbar.BottomNavItem
 import dev.passerby.tourtestproject.presentation.navbar.MyBottomNavigation
 import dev.passerby.tourtestproject.presentation.navbar.NavigationGraph
 import dev.passerby.tourtestproject.presentation.theme.TourTestProjectTheme
@@ -42,7 +40,7 @@ class MainActivity : ComponentActivity() {
                         bottomBar = { MyBottomNavigation(navController = navController) }
                     ) {
                         it.calculateBottomPadding()
-                        NavigationGraph(navController = navController)
+                        NavigationGraph(navController = navController, homeViewModel)
                     }
                 }
             }
