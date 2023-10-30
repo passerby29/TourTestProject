@@ -25,20 +25,41 @@ import dev.passerby.tourtestproject.R
 import dev.passerby.tourtestproject.domain.models.BlogItem
 
 @Composable
-fun HomeScreen(blogContent: List<BlogItem>) {
+fun HomeScreen(blogContent: List<BlogItem>, itemClick: (blogId: Int) -> Unit) {
     val title = "Home Screen"
     Column(
         modifier = Modifier
-            .fillMaxHeight(0.9f).fillMaxWidth()
+            .fillMaxHeight(0.9f)
+            .fillMaxWidth()
             .background(colorResource(id = R.color.teal_700))
             .wrapContentSize(Alignment.TopCenter)
     ) {
         MyTopAppBar(screenTitle = title)
         LazyVerticalGrid(columns = GridCells.Fixed(2), content = {
             items(blogContent.size) { index ->
-                HomeScreenItem(blogItem = blogContent[index])
+                HomeScreenItem(blogItem = blogContent[index], itemClick = itemClick)
             }
         })
+    }
+}
+
+@Composable
+fun BlogDetailScreen() {
+    val title = "Blog Detail Screen"
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(colorResource(id = R.color.teal_700))
+            .wrapContentSize(Alignment.Center)
+    ) {
+        Text(
+            text = title,
+            fontWeight = FontWeight.Bold,
+            color = Color.White,
+            modifier = Modifier.align(Alignment.CenterHorizontally),
+            textAlign = TextAlign.Center,
+            fontSize = 20.sp
+        )
     }
 }
 

@@ -1,5 +1,6 @@
 package dev.passerby.tourtestproject.presentation
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
@@ -18,8 +19,12 @@ import dev.passerby.tourtestproject.R
 import dev.passerby.tourtestproject.domain.models.BlogItem
 
 @Composable
-fun HomeScreenItem(blogItem: BlogItem) {
-    Column(modifier = Modifier.padding(8.dp)) {
+fun HomeScreenItem(blogItem: BlogItem, itemClick: (blogId: Int) ->Unit) {
+    Column(modifier = Modifier
+        .padding(8.dp)
+        .clickable {
+            itemClick(blogItem.id)
+        }) {
         Card(shape = RoundedCornerShape(8.dp)) {
             AsyncImage(
                 model = blogItem.image.md,
