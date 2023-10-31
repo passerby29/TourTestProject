@@ -5,7 +5,7 @@ import dev.passerby.tourtestproject.domain.models.BlogDetailModel
 import dev.passerby.tourtestproject.domain.models.BlogModel
 import dev.passerby.tourtestproject.domain.models.FunModel
 import dev.passerby.tourtestproject.domain.models.MainModel
-import dev.passerby.tourtestproject.domain.models.RoomModel
+import dev.passerby.tourtestproject.domain.models.RoomsModel
 import dev.passerby.tourtestproject.domain.models.TourModel
 
 interface MainRepository {
@@ -14,8 +14,10 @@ interface MainRepository {
 
     suspend fun loadBlogContent(): LiveData<BlogModel>
 
-    suspend fun loadRoomsContent(): LiveData<List<RoomModel>>
-    suspend fun loadToursContent(): LiveData<List<TourModel>>
+    suspend fun loadRoomsContent(): LiveData<RoomsModel>
+    suspend fun loadToursContent(): LiveData<TourModel>
 
+
+    suspend fun loadFunContent(type: String): LiveData<FunModel>
     suspend fun loadBlogDetail(blogId: Int): LiveData<BlogDetailModel>
 }

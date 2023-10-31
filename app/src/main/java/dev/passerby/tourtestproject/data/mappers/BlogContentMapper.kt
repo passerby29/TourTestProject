@@ -19,15 +19,4 @@ class BlogContentMapper {
             title = dtoBlog.title,
             view = dtoBlog.view,
         )
-
-    private fun mapDtoDateToEntityDate(dtoDate: BaseDateDto) = BaseDateModel(
-        date = dtoDate.date,
-        typeDate = dtoDate.typeDate
-    )
-
-    private fun mapDtoImageToEntityImage(dtoImage: BaseImageDto) = BaseImageModel(
-        lg = dtoImage.lg,
-        md = dtoImage.md,
-        sm = dtoImage.sm
-    )
 }

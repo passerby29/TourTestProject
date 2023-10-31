@@ -2,7 +2,10 @@ package dev.passerby.tourtestproject.data.network
 
 import dev.passerby.tourtestproject.data.models.BlogDetailDto
 import dev.passerby.tourtestproject.data.models.BlogDto
+import dev.passerby.tourtestproject.data.models.FunDto
 import dev.passerby.tourtestproject.data.models.MainDto
+import dev.passerby.tourtestproject.data.models.RoomsDto
+import dev.passerby.tourtestproject.data.models.ToursDto
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -24,7 +27,17 @@ interface ApiService {
     suspend fun loadFunContent(
         @Query(QUERY_PARAM_ID) id: Int = ID,
         @Query(QUERY_PARAM_TYPE) type: String
-    ): Response<BlogDto>
+    ): Response<FunDto>
+
+    @GET("rooms")
+    suspend fun loadRoomContent(
+        @Query(QUERY_PARAM_ID) id: Int = ID,
+    ): Response<RoomsDto>
+
+    @GET("tours")
+    suspend fun loadToursContent(
+        @Query(QUERY_PARAM_ID) id: Int = ID,
+    ): Response<ToursDto>
 
     @GET("blog-info")
     suspend fun loadBlogDetail(
