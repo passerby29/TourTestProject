@@ -2,6 +2,9 @@ package dev.passerby.tourtestproject.domain.models
 
 data class MainModel(
     val mainInfo: MainInfo,
+    val error: Any?,
+    val success: Boolean,
+    val time: String
 )
 
 data class MainInfo(
@@ -10,8 +13,8 @@ data class MainInfo(
 )
 
 data class Button(
-    val icon: String,
     val color: String,
+    val icon: String,
     val title: String,
     val type: String,
     val url: String

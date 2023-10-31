@@ -8,6 +8,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import dev.passerby.tourtestproject.domain.models.BlogModel
+import dev.passerby.tourtestproject.domain.models.MainInfo
+import dev.passerby.tourtestproject.domain.models.MainModel
 import dev.passerby.tourtestproject.presentation.navbar.BottomNavItem
 import dev.passerby.tourtestproject.presentation.viewmodels.BlogDetailViewModel
 import dev.passerby.tourtestproject.presentation.viewmodels.HomeViewModel
@@ -19,11 +21,20 @@ fun NavigationGraph(
     blogDetailViewModel: BlogDetailViewModel
 ) {
 
+    val mainInfo = homeViewModel.mainInfo.observeAsState().value ?: MainModel(
+        MainInfo(
+            emptyList(),
+            emptyList()
+        ),
+        "",
+        false,
+        ""
+    )
     val blogContent = homeViewModel.blogContent.observeAsState().value ?: BlogModel(emptyList())
 
     NavHost(navController = navController, startDestination = BottomNavItem.Home.screenRoute) {
         composable(BottomNavItem.Home.screenRoute) {
-            HomeScreen(blogContent.blogList, itemClick = {
+            HomeScreen(mainInfo, blogContent.blogList, itemClick = {
                 navController.navigate("blogDetail/$it")
             })
         }
@@ -44,7 +55,11 @@ fun NavigationGraph(
             "blogDetail/{blogId}",
             arguments = listOf(navArgument("blogId") { type = NavType.IntType })
         ) { backStackEntry ->
-            BlogDetailScreen(backStackEntry.arguments?.getInt("blogId") ?: 0, blogDetailViewModel)
+            BlogDetailScreen(
+                backStackEntry.arguments?.getInt("blogId") ?: 0,
+                blogDetailViewModel,
+                navController
+            )
         }
     }
 }

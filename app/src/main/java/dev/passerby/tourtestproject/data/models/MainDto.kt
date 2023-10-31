@@ -6,6 +6,12 @@ import com.google.gson.annotations.SerializedName
 data class MainDto(
     @SerializedName("data")
     val mainInfo: MainInfo,
+    @SerializedName("error")
+    val error: Any?,
+    @SerializedName("success")
+    val success: Boolean,
+    @SerializedName("time")
+    val time: String
 )
 
 data class MainInfo(
