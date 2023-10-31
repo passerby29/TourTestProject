@@ -20,6 +20,12 @@ interface ApiService {
         @Query(QUERY_PARAM_FORMAT) format: String = FORMAT
     ): Response<BlogDto>
 
+    @GET("fun")
+    suspend fun loadFunContent(
+        @Query(QUERY_PARAM_ID) id: Int = ID,
+        @Query(QUERY_PARAM_TYPE) type: String
+    ): Response<BlogDto>
+
     @GET("blog-info")
     suspend fun loadBlogDetail(
         @Query(QUERY_PARAM_ID) id: Int = ID,
@@ -29,6 +35,7 @@ interface ApiService {
     companion object {
         private const val QUERY_PARAM_ID = "id"
         private const val QUERY_PARAM_FORMAT = "format"
+        private const val QUERY_PARAM_TYPE = "type"
         private const val QUERY_PARAM_BLOG_ID = "blog_id"
         private const val ID = 117
         private const val FORMAT = "card"
