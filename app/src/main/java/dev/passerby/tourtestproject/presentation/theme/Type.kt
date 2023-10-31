@@ -1,10 +1,12 @@
-package dev.passerby.tourtestproject.ui.theme
+package dev.passerby.tourtestproject.presentation.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import dev.passerby.tourtestproject.R
 
 // Set of Material typography styles to start with
 val Typography = Typography(
@@ -31,4 +33,17 @@ val Typography = Typography(
         letterSpacing = 0.5.sp
     )
     */
+)
+
+val appFontFamily = FontFamily(
+    fonts = listOf(
+        Font(
+            resId = R.font.roboto,
+            weight = FontWeight.Normal
+        ),
+        Font(
+            resId = R.font.roboto_bold,
+            weight = FontWeight.Bold
+        ),
+    )
 )
