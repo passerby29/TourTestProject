@@ -17,7 +17,11 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.GridItemSpan
+import androidx.compose.foundation.lazy.grid.LazyGridItemScope
+import androidx.compose.foundation.lazy.grid.LazyGridScope
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -35,6 +39,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -43,21 +48,94 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import dev.passerby.tourtestproject.R
-import dev.passerby.tourtestproject.domain.models.BlogItem
+import dev.passerby.tourtestproject.domain.models.BlogModel
 import dev.passerby.tourtestproject.domain.models.Button
+import dev.passerby.tourtestproject.domain.models.FunModel
 import dev.passerby.tourtestproject.domain.models.MainModel
+import dev.passerby.tourtestproject.domain.models.RoomsModel
+import dev.passerby.tourtestproject.domain.models.TourModel
 import dev.passerby.tourtestproject.presentation.theme.Grey01
 import dev.passerby.tourtestproject.presentation.theme.Grey06
 import dev.passerby.tourtestproject.presentation.theme.Grey20
 import dev.passerby.tourtestproject.presentation.theme.appFontFamily
 import dev.passerby.tourtestproject.presentation.viewmodels.BlogDetailViewModel
+import dev.passerby.tourtestproject.presentation.viewmodels.HomeViewModel
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
 @Composable
-fun HomeScreen(mainModel: MainModel, blogContent: List<BlogItem>, itemClick: (blogId: Int) -> Unit) {
+fun HomeScreen(
+    mainModel: MainModel,
+    homeViewModel: HomeViewModel,
+    itemClick: (blogId: Int) -> Unit
+) {
     val title = "Home Screen"
+    val blogModel = homeViewModel.blogContent.observeAsState().value ?: BlogModel(emptyList())
+    val blogContent = blogModel.blogList
+
+    val foodHeader = stringResource(id = R.string.food_header)
+    val roomsHeader = stringResource(id = R.string.rooms_header)
+    val funHeader = stringResource(id = R.string.fun_header)
+    val childHeader = stringResource(id = R.string.child_header)
+    val toursHeader = stringResource(id = R.string.tours_header)
+    val placesHeader = stringResource(id = R.string.places_header)
+    val blogHeader = stringResource(id = R.string.blog_header)
+
+    val foodModel =
+        homeViewModel.foodContent.observeAsState().value ?: FunModel(
+            emptyList(),
+            null,
+            false,
+            ""
+        )
+    val foodContent = foodModel.funContent
+
+    val roomModel =
+        homeViewModel.roomsContent.observeAsState().value ?: RoomsModel(
+            emptyList(),
+            null,
+            false,
+            ""
+        )
+    val roomContent = roomModel.roomsContent
+
+    val funModel =
+        homeViewModel.funContent.observeAsState().value ?: FunModel(
+            emptyList(),
+            null,
+            false,
+            ""
+        )
+    val funContent = funModel.funContent
+
+    val childModel =
+        homeViewModel.childContent.observeAsState().value ?: FunModel(
+            emptyList(),
+            null,
+            false,
+            ""
+        )
+    val childContent = childModel.funContent
+
+    val toursModel =
+        homeViewModel.toursContent.observeAsState().value ?: TourModel(
+            emptyList(),
+            null,
+            false,
+            ""
+        )
+    val toursContent = toursModel.toursContent
+
+    val placesModel =
+        homeViewModel.placeContent.observeAsState().value ?: FunModel(
+            emptyList(),
+            null,
+            false,
+            ""
+        )
+    val placesContent = placesModel.funContent
+
     Column(
         modifier = Modifier
             .fillMaxHeight(0.9f)
@@ -68,10 +146,80 @@ fun HomeScreen(mainModel: MainModel, blogContent: List<BlogItem>, itemClick: (bl
         MyTopAppBar(screenTitle = title)
         Buttons(buttons = mainModel.mainInfo.buttons)
         LazyVerticalGrid(columns = GridCells.Fixed(2), content = {
-            items(blogContent.size) { index ->
-                HomeScreenItem(blogItem = blogContent[index], itemClick = itemClick)
+            list(
+                header = foodHeader,
+                items = foodContent
+            ) {
+                HomeScreenItemFun(funItem = it)
+            }
+            list(
+                header = roomsHeader,
+                items = roomContent
+            ) {
+                HomeScreenItemRoom(roomItem = it)
+            }
+            list(
+                header = funHeader,
+                items = funContent
+            ) {
+                HomeScreenItemFun(funItem = it)
+            }
+            list(
+                header = childHeader,
+                items = childContent
+            ) {
+                HomeScreenItemFun(funItem = it)
+            }
+            list(
+                header = toursHeader,
+                items = toursContent
+            ) {
+                HomeScreenItemTour(tourItem = it)
+            }
+            list(
+                header = placesHeader,
+                items = placesContent
+            ) {
+                HomeScreenItemFun(funItem = it)
+            }
+            list(
+                header = blogHeader,
+                items = blogContent
+            ) {
+                HomeScreenItemBlog(blogItem = it, itemClick = itemClick)
             }
         })
+    }
+}
+
+inline fun LazyGridScope.single(crossinline itemContent: @Composable (LazyGridItemScope.() -> Unit)) {
+    item(
+        span = { GridItemSpan(maxCurrentLineSpan) }
+    ) {
+        itemContent()
+    }
+}
+
+inline fun <T> LazyGridScope.list(
+    items: List<T>,
+    header: String = "",
+    isSingleElementInRow: Boolean = false,
+    crossinline listContent: @Composable ((T) -> Unit)
+) {
+    if (header.isNotBlank() && items.isNotEmpty())
+        single {
+            Text(
+                text = header,
+                fontSize = 36.sp
+            )
+        }
+    items(
+        span = if (isSingleElementInRow) {
+            { GridItemSpan(maxCurrentLineSpan) }
+        } else null,
+        items = items
+    ) { item ->
+        listContent(item)
     }
 }
 

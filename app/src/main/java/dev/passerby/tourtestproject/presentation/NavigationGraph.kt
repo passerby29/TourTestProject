@@ -30,11 +30,9 @@ fun NavigationGraph(
         false,
         ""
     )
-    val blogContent = homeViewModel.blogContent.observeAsState().value ?: BlogModel(emptyList())
-
     NavHost(navController = navController, startDestination = BottomNavItem.Home.screenRoute) {
         composable(BottomNavItem.Home.screenRoute) {
-            HomeScreen(mainInfo, blogContent.blogList, itemClick = {
+            HomeScreen(mainInfo, homeViewModel, itemClick = {
                 navController.navigate("blogDetail/$it")
             })
         }
