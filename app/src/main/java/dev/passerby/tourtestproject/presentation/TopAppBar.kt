@@ -12,10 +12,7 @@ import androidx.compose.ui.tooling.preview.Preview
 @Composable
 fun MyTopAppBar(screenTitle: String) {
     TopAppBar(
-        colors = TopAppBarDefaults.smallTopAppBarColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer,
-            titleContentColor = MaterialTheme.colorScheme.primary,
-        ),
+        colors = TopAppBarDefaults.smallTopAppBarColors(),
         title = {
             Text(screenTitle)
         }
