@@ -1,10 +1,6 @@
 package dev.passerby.tourtestproject.data.mappers
 
-import dev.passerby.tourtestproject.data.models.Button
-import dev.passerby.tourtestproject.data.models.Content
 import dev.passerby.tourtestproject.data.models.MainDto
-import dev.passerby.tourtestproject.data.models.MainInfo
-import dev.passerby.tourtestproject.data.models.Template
 import dev.passerby.tourtestproject.domain.models.MainModel
 
 class MainInfoMapper {
@@ -15,19 +11,17 @@ class MainInfoMapper {
         time = dto.time
     )
 
-    private fun mapDtoInfoToEntityInfo(dtoInfo: MainInfo) =
-        dev.passerby.tourtestproject.domain.models.MainInfo(
-            buttons = mapDtoButtonsToEntityButtons(dtoInfo.buttons),
-            content = mapDtoContentListToEntityContentList(dtoInfo.content),
-        )
+    private fun mapDtoInfoToEntityInfo(dtoInfo: MainDto.MainInfo) = MainModel.MainInfo(
+        buttons = mapDtoButtonsToEntityButtons(dtoInfo.buttons),
+        content = mapDtoContentListToEntityContentList(dtoInfo.content),
+    )
 
-    private fun mapDtoButtonsToEntityButtons(dtoButtons: List<Button>):
-            List<dev.passerby.tourtestproject.domain.models.Button> {
+    private fun mapDtoButtonsToEntityButtons(dtoButtons: List<MainDto.MainInfo.Button>): List<MainModel.MainInfo.Button> {
         return dtoButtons.map { mapDtoButtonToEntityButton(it) }
     }
 
-    private fun mapDtoButtonToEntityButton(dtoButton: Button) =
-        dev.passerby.tourtestproject.domain.models.Button(
+    private fun mapDtoButtonToEntityButton(dtoButton: MainDto.MainInfo.Button) =
+        MainModel.MainInfo.Button(
             color = dtoButton.color,
             icon = dtoButton.icon,
             title = dtoButton.title,
@@ -35,20 +29,20 @@ class MainInfoMapper {
             url = dtoButton.url
         )
 
-    private fun mapDtoContentListToEntityContentList(dtoContentList: List<Content>):
-            List<dev.passerby.tourtestproject.domain.models.Content> {
+    private fun mapDtoContentListToEntityContentList(dtoContentList: List<MainDto.MainInfo.Content>):
+            List<MainModel.MainInfo.Content> {
         return dtoContentList.map { mapDtoContentToEntityContent(it) }
     }
 
-    private fun mapDtoContentToEntityContent(dtoContent: Content) =
-        dev.passerby.tourtestproject.domain.models.Content(
+    private fun mapDtoContentToEntityContent(dtoContent: MainDto.MainInfo.Content) =
+        MainModel.MainInfo.Content(
             template = mapDtoTemplateToEntityTemplate(dtoContent.template),
             title = dtoContent.title,
             url = dtoContent.url,
         )
 
-    private fun mapDtoTemplateToEntityTemplate(dtoTemplate: Template) =
-        dev.passerby.tourtestproject.domain.models.Template(
+    private fun mapDtoTemplateToEntityTemplate(dtoTemplate: MainDto.MainInfo.Content.Template) =
+        MainModel.MainInfo.Content.Template(
             card = dtoTemplate.card,
             direction = dtoTemplate.direction,
             objectTemplate = dtoTemplate.objectTemplate,

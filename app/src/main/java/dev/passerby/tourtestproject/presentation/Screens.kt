@@ -51,7 +51,6 @@ import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import dev.passerby.tourtestproject.R
 import dev.passerby.tourtestproject.domain.models.BlogModel
-import dev.passerby.tourtestproject.domain.models.Button
 import dev.passerby.tourtestproject.domain.models.FunModel
 import dev.passerby.tourtestproject.domain.models.MainModel
 import dev.passerby.tourtestproject.domain.models.RoomsModel
@@ -174,7 +173,7 @@ fun LazyGridScope.header(
 }
 
 @Composable
-fun Buttons(buttons: List<Button>) {
+fun Buttons(buttons: List<MainModel.MainInfo.Button>) {
     Row(
         modifier = Modifier
             .horizontalScroll(rememberScrollState())
@@ -187,7 +186,7 @@ fun Buttons(buttons: List<Button>) {
 }
 
 @Composable
-fun ButtonItem(button: Button) {
+fun ButtonItem(button: MainModel.MainInfo.Button) {
     Button(modifier = Modifier,
         shape = RoundedCornerShape(8.dp),
         elevation = ButtonDefaults.buttonElevation(defaultElevation = 12.dp),

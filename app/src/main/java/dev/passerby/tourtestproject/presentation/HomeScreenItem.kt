@@ -19,14 +19,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import dev.passerby.tourtestproject.R
-import dev.passerby.tourtestproject.domain.models.BlogItem
-import dev.passerby.tourtestproject.domain.models.FunItem
+import dev.passerby.tourtestproject.domain.models.BlogModel
+import dev.passerby.tourtestproject.domain.models.FunModel
 import dev.passerby.tourtestproject.domain.models.RoomsModel
 import dev.passerby.tourtestproject.domain.models.TourModel
 import dev.passerby.tourtestproject.presentation.theme.appFontFamily
 
 @Composable
-fun HomeScreenItemFun(funItem: FunItem) {
+fun HomeScreenItemFun(funItem: FunModel.FunItem) {
     Column(
         modifier = Modifier
             .padding(8.dp)
@@ -138,7 +138,7 @@ fun HomeScreenItemRoom(roomItem: RoomsModel.RoomItem) {
 }
 
 @Composable
-fun HomeScreenItemBlog(blogItem: BlogItem, itemClick: (blogId: Int) -> Unit) {
+fun HomeScreenItemBlog(blogItem: BlogModel.BlogItem, itemClick: (blogId: Int) -> Unit) {
     Column(modifier = Modifier
         .padding(8.dp)
         .clickable {

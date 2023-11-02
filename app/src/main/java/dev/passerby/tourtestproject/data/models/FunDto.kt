@@ -12,15 +12,15 @@ data class FunDto(
     val success: Boolean,
     @SerializedName("time")
     val time: String
-)
-
-data class FunItem(
-    @SerializedName("id")
-    val id: Int,
-    @SerializedName("image")
-    val image: BaseImageDto,
-    @SerializedName("subtitle")
-    val subtitle: String,
-    @SerializedName("title")
-    val title: String
-)
+) {
+    data class FunItem(
+        @SerializedName("id")
+        val id: Int,
+        @SerializedName("image")
+        val image: BaseImageDto,
+        @SerializedName("subtitle")
+        val subtitle: String,
+        @SerializedName("title")
+        val title: String
+    )
+}

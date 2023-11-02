@@ -18,11 +18,11 @@ object ApiFactory {
 
     private val mGsonConverterFactory = GsonConverterFactory.create()
 
-    private val retrofit = Retrofit.Builder()
+    private val mRetrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .client(mOkHttpClient)
         .addConverterFactory(mGsonConverterFactory)
         .build()
 
-    val apiService: ApiService = retrofit.create(ApiService::class.java)
+    val apiService: ApiService = mRetrofit.create(ApiService::class.java)
 }

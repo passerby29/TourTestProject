@@ -1,10 +1,7 @@
 package dev.passerby.tourtestproject.data.mappers
 
 import dev.passerby.tourtestproject.data.models.FunDto
-import dev.passerby.tourtestproject.data.models.FunItem
-import dev.passerby.tourtestproject.data.models.RoomsDto
 import dev.passerby.tourtestproject.domain.models.FunModel
-import dev.passerby.tourtestproject.domain.models.RoomsModel
 
 class FunContentMapper {
 
@@ -15,18 +12,16 @@ class FunContentMapper {
         time = dto.time
     )
 
-    private fun mapDtoFunListToEntityFunList(dtoList: List<FunItem>):
-            List<dev.passerby.tourtestproject.domain.models.FunItem> {
+    private fun mapDtoFunListToEntityFunList(dtoList: List<FunDto.FunItem>): List<FunModel.FunItem> {
         return dtoList.map {
             mapDtoItemToEntityItem(it)
         }
     }
 
-    private fun mapDtoItemToEntityItem(dtoItem: FunItem) =
-        dev.passerby.tourtestproject.domain.models.FunItem(
-            id = dtoItem.id,
-            image = mapDtoImageToEntityImage(dtoItem.image),
-            subtitle = dtoItem.subtitle,
-            title = dtoItem.title,
-        )
+    private fun mapDtoItemToEntityItem(dtoItem: FunDto.FunItem) = FunModel.FunItem(
+        id = dtoItem.id,
+        image = mapDtoImageToEntityImage(dtoItem.image),
+        subtitle = dtoItem.subtitle,
+        title = dtoItem.title,
+    )
 }

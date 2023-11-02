@@ -36,16 +36,15 @@ class ToursContentMapper {
             night = dtoDuration.night,
         )
 
-    private fun mapDtoHomeToEntityHome(dtoHome: ToursDto.TourItem.Home) =
-        TourModel.TourItem.Home(
-            base = mapDtoBaseToEntityBase(dtoHome.base),
-            id = dtoHome.id,
-            image = mapDtoImageToEntityImage(dtoHome.image),
-            name = dtoHome.name,
-            night = dtoHome.night,
-            type = dtoHome.type,
-            url = dtoHome.url
-        )
+    private fun mapDtoHomeToEntityHome(dtoHome: ToursDto.TourItem.Home) = TourModel.TourItem.Home(
+        base = mapDtoBaseToEntityBase(dtoHome.base),
+        id = dtoHome.id,
+        image = mapDtoImageToEntityImage(dtoHome.image),
+        name = dtoHome.name,
+        night = dtoHome.night,
+        type = dtoHome.type,
+        url = dtoHome.url
+    )
 
     private fun mapDtoBaseToEntityBase(dtoBase: ToursDto.TourItem.Home.Base) =
         TourModel.TourItem.Home.Base(

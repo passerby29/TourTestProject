@@ -5,11 +5,11 @@ data class FunModel(
     val error: Any?,
     val success: Boolean,
     val time: String
-)
-
-data class FunItem(
-    val id: Int,
-    val image: BaseImageModel,
-    val subtitle: String,
-    val title: String
-)
+){
+    data class FunItem(
+        val id: Int,
+        val image: BaseImageModel,
+        val subtitle: String,
+        val title: String
+    )
+}

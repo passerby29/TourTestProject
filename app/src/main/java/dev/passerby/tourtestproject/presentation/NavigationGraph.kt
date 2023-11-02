@@ -7,8 +7,6 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import dev.passerby.tourtestproject.domain.models.BlogModel
-import dev.passerby.tourtestproject.domain.models.MainInfo
 import dev.passerby.tourtestproject.domain.models.MainModel
 import dev.passerby.tourtestproject.presentation.navbar.BottomNavItem
 import dev.passerby.tourtestproject.presentation.viewmodels.BlogDetailViewModel
@@ -22,7 +20,7 @@ fun NavigationGraph(
 ) {
 
     val mainInfo = homeViewModel.mainInfo.observeAsState().value ?: MainModel(
-        MainInfo(
+        MainModel.MainInfo(
             emptyList(),
             emptyList()
         ),
