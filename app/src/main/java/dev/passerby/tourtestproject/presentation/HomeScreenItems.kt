@@ -47,8 +47,8 @@ fun HomeScreenItemFun(funItem: FunModel.FunItem) {
                 fontSize = 12.sp,
                 fontFamily = appFontFamily,
                 fontWeight = FontWeight.Medium,
-                
-            )
+
+                )
         )
         Text(
             text = funItem.subtitle,
@@ -58,8 +58,8 @@ fun HomeScreenItemFun(funItem: FunModel.FunItem) {
                 fontSize = 12.sp,
                 fontFamily = appFontFamily,
                 fontWeight = FontWeight.Normal,
-                
-            )
+
+                )
         )
     }
 }
@@ -86,8 +86,8 @@ fun HomeScreenItemTour(tourItem: TourModel.TourItem) {
                 fontSize = 12.sp,
                 fontFamily = appFontFamily,
                 fontWeight = FontWeight.Medium,
-                
-            )
+
+                )
         )
         Text(
             text = tourItem.location,
@@ -97,8 +97,8 @@ fun HomeScreenItemTour(tourItem: TourModel.TourItem) {
                 fontSize = 12.sp,
                 fontFamily = appFontFamily,
                 fontWeight = FontWeight.Normal,
-                
-            )
+
+                )
         )
     }
 }
@@ -160,8 +160,8 @@ fun HomeScreenItemBlog(blogItem: BlogModel.BlogItem, itemClick: (blogId: Int) ->
                 fontSize = 12.sp,
                 fontFamily = appFontFamily,
                 fontWeight = FontWeight.Medium,
-                
-            )
+
+                )
         )
         Text(
             text = blogItem.subtitle,
@@ -171,8 +171,8 @@ fun HomeScreenItemBlog(blogItem: BlogModel.BlogItem, itemClick: (blogId: Int) ->
                 fontSize = 12.sp,
                 fontFamily = appFontFamily,
                 fontWeight = FontWeight.Normal,
-                
-            )
+
+                )
         )
     }
 }

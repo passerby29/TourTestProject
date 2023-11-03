@@ -1,4 +1,4 @@
-package dev.passerby.tourtestproject.presentation.navbar
+package dev.passerby.tourtestproject.presentation.navigation
 
 import dev.passerby.tourtestproject.R
 

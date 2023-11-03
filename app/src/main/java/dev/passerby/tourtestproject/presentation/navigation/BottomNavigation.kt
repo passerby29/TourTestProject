@@ -1,4 +1,4 @@
-package dev.passerby.tourtestproject.presentation.navbar
+package dev.passerby.tourtestproject.presentation.navigation
 
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -14,7 +14,6 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import dev.passerby.tourtestproject.presentation.theme.IconSelected
 import dev.passerby.tourtestproject.presentation.theme.IconUnselected
-import dev.passerby.tourtestproject.presentation.theme.LightSurface
 
 @Composable
 fun MyBottomNavigation(navController: NavController) {

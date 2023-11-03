@@ -1,10 +1,8 @@
-package dev.passerby.tourtestproject.presentation
+package dev.passerby.tourtestproject.presentation.navigation
 
 import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.tween
-import androidx.compose.animation.slideInHorizontally
-import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.navigation.NavHostController
@@ -13,7 +11,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import dev.passerby.tourtestproject.domain.models.MainModel
-import dev.passerby.tourtestproject.presentation.navbar.BottomNavItem
+import dev.passerby.tourtestproject.presentation.screens.BlogDetailScreen
+import dev.passerby.tourtestproject.presentation.screens.BookScreen
+import dev.passerby.tourtestproject.presentation.screens.ChatScreen
+import dev.passerby.tourtestproject.presentation.screens.HomeScreen
+import dev.passerby.tourtestproject.presentation.screens.MapScreen
+import dev.passerby.tourtestproject.presentation.screens.MoreScreen
 import dev.passerby.tourtestproject.presentation.viewmodels.BlogDetailViewModel
 import dev.passerby.tourtestproject.presentation.viewmodels.HomeViewModel
 
