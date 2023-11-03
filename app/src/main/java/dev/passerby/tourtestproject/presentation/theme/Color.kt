@@ -2,14 +2,16 @@ package dev.passerby.tourtestproject.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
+val IconUnselected = Color(0xFFB6B6B6)
+val IconSelected = Color(0xFF4096FB)
 
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
+val LightPrimary = Color(0xFFFFFFFF)
+val LightSecondary = Color(0xFFFFFFFF)
+val LightSurface = Color(0xFFFFFFFF)
+val LightOnPrimary = Color(0xFF000000)
 
-val Grey20 = Color(0xFF0D0D0D)
-val Grey06 = Color(0xFFF5F5F5)
-val Grey01 = Color(0xFFFFFFFF)
+val DarkPrimary = Color(0xFF1A1A1A)
+val DarkSecondary = Color(0xFF121212)
+val DarkSurface = Color(0xFF2C2C2E)
+val DarkOnSurface = Color(0xFFFFFFFF)
+val DarkOnPrimary = Color(0xFFFFFFFF)

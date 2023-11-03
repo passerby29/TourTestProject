@@ -3,22 +3,16 @@ package dev.passerby.tourtestproject.presentation
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.compose.rememberNavController
-import dev.passerby.tourtestproject.presentation.navbar.MyBottomNavigation
+import dev.passerby.tourtestproject.MainScreen
 import dev.passerby.tourtestproject.presentation.theme.TourTestProjectTheme
 import dev.passerby.tourtestproject.presentation.viewmodels.BlogDetailViewModel
 import dev.passerby.tourtestproject.presentation.viewmodels.HomeViewModel
+import dev.passerby.tourtestproject.presentation.viewmodels.SharedViewModel
 
+@OptIn(ExperimentalAnimationApi::class)
 class MainActivity : ComponentActivity() {
 
     private val homeViewModel by lazy {
@@ -29,41 +23,22 @@ class MainActivity : ComponentActivity() {
         ViewModelProvider(this)[BlogDetailViewModel::class.java]
     }
 
-    @OptIn(ExperimentalMaterial3Api::class)
+    private val sharedViewModel by lazy {
+        ViewModelProvider(this)[SharedViewModel::class.java]
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             TourTestProjectTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    val navController = rememberNavController()
-                    Scaffold(
-                        bottomBar = { MyBottomNavigation(navController = navController) }
-                    ) {
-                        it.calculateBottomPadding()
-                        NavigationGraph(navController = navController, homeViewModel, blogDetailViewModel)
-                    }
-                }
+                val navController = rememberNavController()
+                MainScreen(
+                    navController = navController,
+                    sharedViewModel = sharedViewModel,
+                    homeViewModel = homeViewModel,
+                    blogDetailViewModel = blogDetailViewModel
+                )
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    TourTestProjectTheme {
-        Greeting("Android")
     }
 }

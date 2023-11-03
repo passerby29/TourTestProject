@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">TourTestProject</string>
+    <string name="food_header">Питание</string>
+    <string name="rooms_header">Домики и номера</string>
+    <string name="fun_header">Развлечения</string>
+    <string name="child_header">Для детей</string>
+    <string name="tours_header">Туры</string>
+    <string name="places_header">Интересные места</string>
+    <string name="blog_header">Блог</string>
+
+    <string name="home_title">Главная</string>
+    <string name="map_title">Карта</string>
+    <string name="book_title">Бронь</string>
+    <string name="chat_title">Чат</string>
+    <string name="more_title">Ещё</string>
+    <string name="blog_detail_title">Блог</string>
 </resources>

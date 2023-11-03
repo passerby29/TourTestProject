@@ -42,6 +42,10 @@ val appFontFamily = FontFamily(
             weight = FontWeight.Normal
         ),
         Font(
+            resId = R.font.roboto_medium,
+            weight = FontWeight.Medium
+        ),
+        Font(
             resId = R.font.roboto_bold,
             weight = FontWeight.Bold
         ),

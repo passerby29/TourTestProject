@@ -2,7 +2,10 @@ package dev.passerby.tourtestproject.data.network
 
 import dev.passerby.tourtestproject.data.models.BlogDetailDto
 import dev.passerby.tourtestproject.data.models.BlogDto
+import dev.passerby.tourtestproject.data.models.FunDto
 import dev.passerby.tourtestproject.data.models.MainDto
+import dev.passerby.tourtestproject.data.models.RoomsDto
+import dev.passerby.tourtestproject.data.models.ToursDto
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -20,6 +23,22 @@ interface ApiService {
         @Query(QUERY_PARAM_FORMAT) format: String = FORMAT
     ): Response<BlogDto>
 
+    @GET("fun")
+    suspend fun loadFunContent(
+        @Query(QUERY_PARAM_ID) id: Int = ID,
+        @Query(QUERY_PARAM_TYPE) type: String
+    ): Response<FunDto>
+
+    @GET("rooms")
+    suspend fun loadRoomContent(
+        @Query(QUERY_PARAM_ID) id: Int = ID,
+    ): Response<RoomsDto>
+
+    @GET("tours")
+    suspend fun loadToursContent(
+        @Query(QUERY_PARAM_ID) id: Int = ID,
+    ): Response<ToursDto>
+
     @GET("blog-info")
     suspend fun loadBlogDetail(
         @Query(QUERY_PARAM_ID) id: Int = ID,
@@ -29,6 +48,7 @@ interface ApiService {
     companion object {
         private const val QUERY_PARAM_ID = "id"
         private const val QUERY_PARAM_FORMAT = "format"
+        private const val QUERY_PARAM_TYPE = "type"
         private const val QUERY_PARAM_BLOG_ID = "blog_id"
         private const val ID = 117
         private const val FORMAT = "card"
