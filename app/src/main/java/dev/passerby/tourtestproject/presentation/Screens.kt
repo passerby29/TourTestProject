@@ -66,7 +66,6 @@ import java.util.Locale
 fun HomeScreen(
     mainModel: MainModel, homeViewModel: HomeViewModel, itemClick: (blogId: Int) -> Unit
 ) {
-    val title = "Home Screen"
     val blogModel = homeViewModel.blogContent.observeAsState().value ?: BlogModel(emptyList())
     val blogContent = blogModel.blogList
 
@@ -110,11 +109,8 @@ fun HomeScreen(
 
     Column(
         modifier = Modifier
-            .fillMaxHeight(0.9f)
-            .fillMaxWidth()
             .wrapContentSize(Alignment.TopCenter)
     ) {
-        MyTopAppBar(screenTitle = title)
         Buttons(buttons = mainModel.mainInfo.buttons)
         LazyVerticalGrid(
             modifier = Modifier.padding(start =  8.dp, end = 8.dp, top = 16.dp),
@@ -203,7 +199,6 @@ fun BlogDetailScreen(
     val blogDetail = blogDetailViewModel.blogDetail.observeAsState().value?.blogDetail
     Column(
         modifier = Modifier
-            .fillMaxSize()
             .verticalScroll(rememberScrollState())
     ) {
         Box {
@@ -258,8 +253,8 @@ fun BlogDetailScreen(
 
 @Composable
 fun MapScreen() {
-    val title = "Map Screen"
-    Scaffold(topBar = { MyTopAppBar(title) }) {
+    val title = "Экран карта"
+    Scaffold {
         it.calculateBottomPadding()
         Column(
             modifier = Modifier
@@ -281,8 +276,8 @@ fun MapScreen() {
 
 @Composable
 fun BookScreen() {
-    val title = "Book Screen"
-    Scaffold(topBar = { MyTopAppBar(title) }) {
+    val title = "Экран бронь"
+    Scaffold {
         it.calculateBottomPadding()
         Column(
             modifier = Modifier
@@ -305,8 +300,8 @@ fun BookScreen() {
 
 @Composable
 fun ChatScreen() {
-    val title = "Chat Screen"
-    Scaffold(topBar = { MyTopAppBar(title) }) {
+    val title = "Экран чат"
+    Scaffold{
         it.calculateBottomPadding()
         Column(
             modifier = Modifier
@@ -329,8 +324,8 @@ fun ChatScreen() {
 
 @Composable
 fun MoreScreen() {
-    val title = "More Screen"
-    Scaffold(topBar = { MyTopAppBar(title) }) {
+    val title = "Экран  ещё"
+    Scaffold {
         it.calculateBottomPadding()
         Column(
             modifier = Modifier
@@ -351,11 +346,11 @@ fun MoreScreen() {
 }
 
 private fun formatDate(date: String?): String {
-    if (date.isNullOrEmpty()) {
-        return date.toString()
+    return if (date.isNullOrEmpty()) {
+        date.toString()
     } else {
         val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
         val formatter = SimpleDateFormat("dd.MM.yyyy", Locale.ITALIAN)
-        return formatter.format(parser.parse(date) as Date)
+        formatter.format(parser.parse(date) as Date)
     }
 }
