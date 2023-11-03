@@ -33,10 +33,6 @@ fun MainScreen(
     blogDetailViewModel: BlogDetailViewModel
 ) {
     var title by remember { mutableStateOf("") }
-    val popBackStack: () -> Unit = { navController.popBackStack() }
-    var showBottomBar by rememberSaveable { mutableStateOf(true) }
-    var showTopBar by rememberSaveable { mutableStateOf(true) }
-    val navBackStackEntry by navController.currentBackStackEntryAsState()
 
     LaunchedEffect(navController) {
         navController.currentBackStackEntryFlow.collect { backStackEntry ->
@@ -52,17 +48,8 @@ fun MainScreen(
         }
     }
 
-    showBottomBar = when (navBackStackEntry?.destination?.route) {
-        BottomNavItem.BlogDetail.screenRoute -> false
-        else -> true
-    }
-    showTopBar = when (navBackStackEntry?.destination?.route) {
-        BottomNavItem.BlogDetail.screenRoute -> false
-        else -> true
-    }
-
-    Scaffold(topBar = { if (showTopBar) MyTopAppBar(screenTitle = title) },
-        bottomBar = { if (showBottomBar) MyBottomNavigation(navController = navController)  },
+    Scaffold(topBar = { MyTopAppBar(screenTitle = title) },
+        bottomBar = { MyBottomNavigation(navController = navController)  },
         content = {
             Box(modifier = Modifier.padding(it)) {
                 NavigationGraph(
