@@ -1,4 +1,4 @@
-package dev.passerby.tourtestproject
+package dev.passerby.tourtestproject.presentation
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.Box
@@ -10,33 +10,25 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.currentBackStackEntryAsState
 import dev.passerby.tourtestproject.presentation.MyTopAppBar
-import dev.passerby.tourtestproject.presentation.NavigationGraph
-import dev.passerby.tourtestproject.presentation.navbar.BottomNavItem
-import dev.passerby.tourtestproject.presentation.navbar.MyBottomNavigation
+import dev.passerby.tourtestproject.presentation.navigation.NavigationGraph
+import dev.passerby.tourtestproject.presentation.navigation.BottomNavItem
+import dev.passerby.tourtestproject.presentation.navigation.MyBottomNavigation
 import dev.passerby.tourtestproject.presentation.viewmodels.BlogDetailViewModel
 import dev.passerby.tourtestproject.presentation.viewmodels.HomeViewModel
-import dev.passerby.tourtestproject.presentation.viewmodels.SharedViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @ExperimentalAnimationApi
 @Composable
 fun MainScreen(
     navController: NavHostController,
-    sharedViewModel: SharedViewModel,
     homeViewModel: HomeViewModel,
     blogDetailViewModel: BlogDetailViewModel
 ) {
     var title by remember { mutableStateOf("") }
-    val popBackStack: () -> Unit = { navController.popBackStack() }
-    var showBottomBar by rememberSaveable { mutableStateOf(true) }
-    var showTopBar by rememberSaveable { mutableStateOf(true) }
-    val navBackStackEntry by navController.currentBackStackEntryAsState()
 
     LaunchedEffect(navController) {
         navController.currentBackStackEntryFlow.collect { backStackEntry ->
@@ -52,17 +44,8 @@ fun MainScreen(
         }
     }
 
-    showBottomBar = when (navBackStackEntry?.destination?.route) {
-        BottomNavItem.BlogDetail.screenRoute -> false
-        else -> true
-    }
-    showTopBar = when (navBackStackEntry?.destination?.route) {
-        BottomNavItem.BlogDetail.screenRoute -> false
-        else -> true
-    }
-
-    Scaffold(topBar = { if (showTopBar) MyTopAppBar(screenTitle = title) },
-        bottomBar = { if (showBottomBar) MyBottomNavigation(navController = navController)  },
+    Scaffold(topBar = { MyTopAppBar(screenTitle = title) },
+        bottomBar = { MyBottomNavigation(navController = navController)  },
         content = {
             Box(modifier = Modifier.padding(it)) {
                 NavigationGraph(

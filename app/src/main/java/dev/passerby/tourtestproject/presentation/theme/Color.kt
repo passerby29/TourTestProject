@@ -3,7 +3,7 @@ package dev.passerby.tourtestproject.presentation.theme
 import androidx.compose.ui.graphics.Color
 
 val IconUnselected = Color(0xFFB6B6B6)
-val IconSelected = Color(0xFF4096FB)
+val IconSelected = Color(0xFF4095FA)
 
 val LightPrimary = Color(0xFFFFFFFF)
 val LightSecondary = Color(0xFFFFFFFF)
