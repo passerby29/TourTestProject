@@ -26,7 +26,7 @@ fun MyBottomNavigation(navController: NavController) {
         BottomNavItem.More
     )
     NavigationBar(
-        containerColor = MaterialTheme.colorScheme.primary
+        containerColor = MaterialTheme.colorScheme.surface
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route
@@ -42,7 +42,7 @@ fun MyBottomNavigation(navController: NavController) {
                         tint = if (selected) IconSelected else IconUnselected
                     )
                 },
-                colors = NavigationBarItemDefaults.colors(indicatorColor = LightSurface),
+                colors = NavigationBarItemDefaults.colors(indicatorColor = MaterialTheme.colorScheme.surface),
                 alwaysShowLabel = true,
                 label = { Text(text = screen.title, fontSize = 9.sp) },
                 onClick = {

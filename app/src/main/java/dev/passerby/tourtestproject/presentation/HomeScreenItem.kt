@@ -35,7 +35,7 @@ fun HomeScreenItemFun(funItem: FunModel.FunItem) {
             AsyncImage(
                 model = funItem.image.md,
                 contentDescription = null,
-                placeholder = painterResource(id = R.drawable.ic_launcher_background)
+                placeholder = painterResource(id = R.drawable.image_placeholder)
             )
         }
         Spacer(modifier = Modifier.height(4.dp))
@@ -74,7 +74,7 @@ fun HomeScreenItemTour(tourItem: TourModel.TourItem) {
             AsyncImage(
                 model = tourItem.image.md,
                 contentDescription = null,
-                placeholder = painterResource(id = R.drawable.ic_launcher_background)
+                placeholder = painterResource(id = R.drawable.image_placeholder)
             )
         }
         Spacer(modifier = Modifier.height(4.dp))
@@ -113,7 +113,7 @@ fun HomeScreenItemRoom(roomItem: RoomsModel.RoomItem) {
             AsyncImage(
                 model = roomItem.image.md,
                 contentDescription = null,
-                placeholder = painterResource(id = R.drawable.ic_launcher_background)
+                placeholder = painterResource(id = R.drawable.image_placeholder)
             )
         }
         Spacer(modifier = Modifier.height(4.dp))
@@ -148,7 +148,7 @@ fun HomeScreenItemBlog(blogItem: BlogModel.BlogItem, itemClick: (blogId: Int) ->
             AsyncImage(
                 model = blogItem.image.md,
                 contentDescription = null,
-                placeholder = painterResource(id = R.drawable.ic_launcher_background)
+                placeholder = painterResource(id = R.drawable.image_placeholder)
             )
         }
         Spacer(modifier = Modifier.height(4.dp))

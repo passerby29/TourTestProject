@@ -2,7 +2,6 @@
 
 package dev.passerby.tourtestproject.presentation
 
-import android.content.res.Resources.Theme
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -11,9 +10,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
@@ -32,7 +29,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
@@ -109,13 +105,16 @@ fun HomeScreen(
 
     Column(
         modifier = Modifier
+            .background(MaterialTheme.colorScheme.primary)
             .wrapContentSize(Alignment.TopCenter)
     ) {
-        Buttons(buttons = mainModel.mainInfo.buttons)
         LazyVerticalGrid(
-            modifier = Modifier.padding(start =  8.dp, end = 8.dp, top = 16.dp),
+            modifier = Modifier.padding(start = 8.dp, end = 8.dp, top = 16.dp),
             columns = GridCells.Fixed(2),
             content = {
+                items(1, span = { GridItemSpan(this.maxLineSpan) }) {
+                    Buttons(buttons = mainModel.mainInfo.buttons)
+                }
                 list(blogContent, blogHeader) {
                     HomeScreenItemBlog(blogItem = it, itemClick = itemClick)
                 }
@@ -301,7 +300,7 @@ fun BookScreen() {
 @Composable
 fun ChatScreen() {
     val title = "Экран чат"
-    Scaffold{
+    Scaffold {
         it.calculateBottomPadding()
         Column(
             modifier = Modifier

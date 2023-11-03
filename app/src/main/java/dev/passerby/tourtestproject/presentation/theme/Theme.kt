@@ -3,7 +3,6 @@ package dev.passerby.tourtestproject.presentation.theme
 import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
@@ -16,12 +15,14 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 
 private val DarkColorScheme = darkColorScheme(
     primary = DarkPrimary,
     secondary = DarkSecondary,
     surface = DarkSurface,
+    onPrimary = DarkOnPrimary,
     onSurface = DarkOnSurface,
     onBackground = DarkOnSurface,
     onSecondary = DarkOnSurface,
@@ -69,6 +70,20 @@ fun TourTestProjectTheme(
             val window = (view.context as Activity).window
             window.statusBarColor = colorScheme.primary.toArgb()
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
+        }
+    }
+
+    val systemUiController = rememberSystemUiController()
+    val isDark = isSystemInDarkTheme()
+    SideEffect {
+        if (isDark) {
+            systemUiController.setSystemBarsColor(
+                color = DarkPrimary
+            )
+        } else {
+            systemUiController.setSystemBarsColor(
+                color = LightPrimary
+            )
         }
     }
 
